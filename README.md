@@ -75,8 +75,13 @@ Data includes county-level measures related to:
 Created visualizations examining relationships between:
 
 - Income and life expectancy
+![Income and Life Expectancy](figures/income_life_expectancy.png)
+
 - Education and life expectancy
+![Education and Life Expectancy](figures/education_life_expectancy.png)
+
 - Smoking and life expectancy
+![Smoking and Life Expectancy](figures/smoking_life_expectancy.png)
 
 ### Correlation Analysis
 
