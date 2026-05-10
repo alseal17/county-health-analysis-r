@@ -1,0 +1,32 @@
+{
+    "id": "422A6F8C",
+    "path": "~/county-health-analysis-r/County-Level Public Health Analysis.Rmd",
+    "project_path": "County-Level Public Health Analysis.Rmd",
+    "type": "r_markdown",
+    "hash": "3290080627",
+    "contents": "",
+    "dirty": false,
+    "created": 1778446601548.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "169,2",
+        "scrollLine": "161",
+        "rmdVisualMode": "false",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "1162:0",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1778449118,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1778449118247,
+    "read_only": false,
+    "read_only_alternatives": []
+}

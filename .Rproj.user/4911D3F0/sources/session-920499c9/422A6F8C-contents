@@ -1,0 +1,243 @@
+---
+title: "County-Level Public Health Analysis"
+author: "Alyssa Seal"
+date: "2026-05-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Project Overview
+
+This project analyzes county-level public health data to explore how socioeconomic, behavioral, healthcare access, and environmental factors relate to life expectancy across U.S. counties.
+
+# Research Questions
+
+1.  How does median household income relate to life expectancy?
+2.  How does education relate to life expectancy?
+3.  How are smoking, obesity, poverty, and healthcare access associated with life expectancy?
+4.  Which public health indicators show the strongest relationships with life expectancy?
+
+# Load Packages
+
+```{r packages, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(janitor)
+library(skimr)
+library(corrplot)
+```
+
+# Load Data
+
+```{r load-data}
+ranked <- read_csv("data/raw/Ranked Measure Data.csv", skip = 1) %>%
+  clean_names()
+
+additional <- read_csv("data/raw/Additional Measure Data.csv", skip = 1) %>%
+  clean_names()
+
+rankings <- read_csv("data/raw/Outcomes and Factors Rankings.csv", skip = 1) %>%
+  clean_names()
+```
+
+# Data Cleaning
+
+```{r clean-data}
+ranked_counties <- ranked %>%
+  filter(!is.na(county))
+
+additional_counties <- additional %>%
+  filter(!is.na(county))
+
+rankings_counties <- rankings %>%
+  filter(!is.na(county))
+```
+
+# Create Analysis Dataset
+
+```{r}
+health_data <- ranked_counties %>%
+  select(
+    fips,
+    state,
+    county,
+    
+    # Health outcomes
+    years_of_potential_life_lost_rate,
+    percent_fair_or_poor_health,
+    average_number_of_physically_unhealthy_days,
+    average_number_of_mentally_unhealthy_days,
+    
+    # Behaviors
+    percent_adults_reporting_currently_smoking,
+    percent_adults_with_obesity,
+    percent_physically_inactive,
+    
+    # Healthcare access
+    percent_uninsured,
+    primary_care_physicians_rate,
+    mental_health_provider_rate,
+    
+    # Socioeconomic
+    percent_some_college,
+    percent_unemployed,
+    percent_children_in_poverty,
+    income_ratio,
+    
+    # Safety / environment (nice add for your background)
+    injury_death_rate,
+    
+    # Environment
+    average_daily_pm2_5,
+    percent_severe_housing_problems
+  )
+
+additional_selected <- additional_counties %>%
+  select(
+    fips, 
+    life_expectancy,
+    median_household_income,
+    population,
+    percent_rural
+    ) 
+
+health_data <- health_data %>%
+  left_join(additional_selected, by = "fips")
+
+health_data <- health_data %>%
+  mutate(across(
+    where(is.character),
+    ~ str_replace_all(.x, ",", "")
+  )) %>%
+  mutate(across(
+    -c(fips, state, county),
+    as.numeric
+  ))
+```
+
+# Exploratory Data Analysis 
+
+```{r}
+summary(health_data)
+
+skim(health_data)
+```
+
+# Visualizations
+
+## Income Plot 
+
+```{r}
+income_plot <- ggplot(health_data, aes(x = median_household_income, y = life_expectancy)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(
+    title = "Median Household Income and Life Expectancy by U.S. County",
+    x = "Median Household Income",
+    y = "Life Expectancy"
+  ) +
+  theme_minimal()
+
+income_plot
+
+ggsave("figures/income_life_expectancy.png", plot = income_plot, width = 8, height = 6)
+```
+
+The income plot suggests a positive relationship between median household income and life expectancy. Counties with higher median household income generally appear to have higher life expectancy, although the spread of points shows that income alone does not fully explain differences in health outcomes.
+
+## Education Plot
+
+```{r}
+education_plot <- ggplot(health_data, aes(x = percent_some_college, y = life_expectancy)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(
+    title = "Education and Life Expectancy by U.S. County",
+    x = "% Some College",
+    y = "Life Expectancy"
+  ) +
+  theme_minimal()
+
+education_plot
+
+ggsave("figures/education_life_expectancy.png", plot = education_plot, width = 8, height = 6)
+```
+
+The education plot shows that counties with higher percentages of adults completing some college tend to have higher life expectancy. This supports the idea that education may be connected to better health outcomes through income, healthcare access, health literacy, and community resources.
+
+## Smoking Plot 
+
+```{r}
+smoking_plot <- ggplot(health_data, aes(x = percent_adults_reporting_currently_smoking, y = life_expectancy)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(
+    title = "Smoking and Life Expectancy by U.S. County",
+    x = "% Adult Smoking",
+    y = "Life Expectancy"
+  ) +
+  theme_minimal()
+
+smoking_plot
+
+ggsave("figures/smoking_life_expectancy.png", plot = smoking_plot, width = 8, height = 6)
+```
+
+The smoking plot shows a negative relationship between adult smoking rates and life expectancy. Counties with higher smoking rates generally appear to have lower life expectancy, which is consistent with smoking being a major behavioral health risk factor.
+
+# Correlation Analysis 
+
+```{r}
+cor_data <- health_data %>%
+  select(
+    life_expectancy,
+    median_household_income,
+    percent_some_college,
+    percent_adults_reporting_currently_smoking,
+    percent_adults_with_obesity,
+    percent_physically_inactive,
+    percent_uninsured,
+    percent_children_in_poverty,
+    injury_death_rate
+  ) %>%
+  drop_na()
+
+cor_matrix <- cor(cor_data)
+
+corrplot(cor_matrix, method = "color", type = "upper", tl.cex = 0.8)
+```
+
+The correlation heatmap provides a broader view of how selected health, economic, and behavioral variables relate to one another. Variables such as income and education appear to move in a healthier direction with life expectancy, while smoking, poverty, obesity, and physical inactivity appear more strongly connected with lower life expectancy.
+
+# Regression Model 
+
+```{r}
+model <- lm(
+  life_expectancy ~ median_household_income +
+    percent_some_college +
+    percent_adults_reporting_currently_smoking +
+    percent_adults_with_obesity +
+    percent_uninsured +
+    percent_children_in_poverty,
+  data = health_data
+)
+
+summary(model)
+```
+
+The regression model was used to examine how multiple county-level factors relate to life expectancy at the same time. This model should be interpreted as an exploratory analysis rather than a causal model. The results can help identify which variables remain meaningful predictors of life expectancy when income, education, smoking, obesity, uninsured status, and child poverty are considered together.
+
+# Key Findings 
+
+- Counties with higher median household income generally showed higher life expectancy.
+- Counties with higher smoking rates generally showed lower life expectancy.
+- Education appeared positively related to life expectancy.
+- These relationships are associations, not proof of causation.
+
+# Conclusion
+
+This project demonstrates how R can be used to clean, explore, visualize, and model public health data. Overall, the analysis suggests that life expectancy across U.S. counties is associated with a combination of socioeconomic conditions, health behaviors, and healthcare access factors. Higher income and education levels generally appear related to longer life expectancy, while smoking, obesity, poverty, and uninsured rates appear related to poorer health outcomes.
+
+This project is exploratory and does not prove causation, but it provides a useful example of how county-level public health data can be analyzed to identify patterns and communicate findings clearly.

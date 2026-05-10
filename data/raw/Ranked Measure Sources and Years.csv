@@ -1,0 +1,43 @@
+Focus Area,Measure,Description,Weight,Source,Year(s),Top Performers,US Overall
+HEALTH OUTCOMES,,,,,,,
+Length of Life,Premature Death*,"Years of potential life lost before age 75 per 100,000 population (age-adjusted).",50%,National Center for Health Statistics - Mortality Files,2018-2020,"5,600","7,300"
+Quality of Life,Poor or Fair Health,Percentage of adults reporting fair or poor health (age-adjusted).,10%,Behavioral Risk Factor Surveillance System,2020,11%,12%
+,Poor Physical Health Days,Average number of physically unhealthy days reported in past 30 days (age-adjusted).,10%,Behavioral Risk Factor Surveillance System,2020,2.7,3
+,Poor Mental Health Days,Average number of mentally unhealthy days reported in past 30 days (age-adjusted).,10%,Behavioral Risk Factor Surveillance System,2020,4,4.4
+,Low Birthweight*,"Percentage of live births with low birthweight (< 2,500 grams).",20%,National Center for Health Statistics - Natality files,2014-2020,6%,8%
+HEALTH FACTORS,,,,,,,
+HEALTH BEHAVIORS,,,,,,,
+Tobacco Use,Adult Smoking,Percentage of adults who are current smokers (age-adjusted).,10%,Behavioral Risk Factor Surveillance System,2020,15%,16%
+Diet and Exercise,Adult Obesity,Percentage of the adult population (age 18 and older) that reports a body mass index (BMI) greater than or equal to 30 kg/m2 (age-adjusted).,5%,Behavioral Risk Factor Surveillance System,2020,30%,32%
+,Food Environment Index,"Index of factors that contribute to a healthy food environment, from 0 (worst) to 10 (best).",2%,USDA Food Environment Atlas; Map the Meal Gap from Feeding America,2019 & 2020,8.7,7
+,Physical Inactivity,Percentage of adults age 18 and over reporting no leisure-time physical activity (age-adjusted).,2%,Behavioral Risk Factor Surveillance System,2020,19%,22%
+,Access to Exercise Opportunities,Percentage of population with adequate access to locations for physical activity.,1%,ArcGIS Business Analyst and Living Atlas of the World; YMCA; US Census TIGER/Line Shapefiles,2022 & 2020,90%,84%
+Alcohol and Drug Use,Excessive Drinking,Percentage of adults reporting binge or heavy drinking (age-adjusted).,2.5%,Behavioral Risk Factor Surveillance System,2020,15%,19%
+,Alcohol-Impaired Driving Deaths,Percentage of driving deaths with alcohol involvement.,2.5%,Fatality Analysis Reporting System,2016-2020,10%,27%
+Sexual Activity,Sexually Transmitted Infections,"Number of newly diagnosed chlamydia cases per 100,000 population.",2.5%,"National Center for HIV/AIDS, Viral Hepatitis, STD, and TB Prevention",2020,152.4,481.3
+,Teen Births*,"Number of births per 1,000 female population ages 15-19.",2.5%,National Center for Health Statistics - Natality files,2014-2020,11,19
+CLINICAL CARE,,,,,,,
+Access to Care,Uninsured,Percentage of population under age 65 without health insurance.,5%,Small Area Health Insurance Estimates,2020,6%,10%
+,Primary Care Physicians,Ratio of population to primary care physicians.,3%,Area Health Resource File/American Medical Association,2020,"1,020:1","1,310:1"
+,Dentists,Ratio of population to dentists.,1%,Area Health Resource File/National Provider Identifier Downloadable File,2021,"1,200:1","1,380:1"
+,Mental Health Providers,Ratio of population to mental health providers.,1%,"CMS, National Provider Identification",2022,240:1,340:1
+Quality of Care,Preventable Hospital Stays*,"Rate of hospital stays for ambulatory-care sensitive conditions per 100,000 Medicare enrollees.",5%,Mapping Medicare Disparities Tool,2020,"1,666","2,809"
+,Mammography Screening*,Percentage of female Medicare enrollees ages 65-74 that received an annual mammography screening.,2.5%,Mapping Medicare Disparities Tool,2020,47%,37%
+,Flu Vaccinations*,Percentage of fee-for-service (FFS) Medicare enrollees that had an annual flu vaccination.,2.5%,Mapping Medicare Disparities Tool,2020,57%,51%
+SOCIAL & ECONOMIC FACTORS,,,,,,,
+Education,High School Completion,Percentage of adults ages 25 and over with a high school diploma or equivalent.,5%,"American Community Survey, 5-year estimates",2017-2021,94%,89%
+,Some College,Percentage of adults ages 25-44 with some post-secondary education.,5%,"American Community Survey, 5-year estimates",2017-2021,74%,67%
+Employment,Unemployment,Percentage of population ages 16 and older unemployed but seeking work.,10%,Bureau of Labor Statistics,2021,2.80%,5.40%
+Income,Children in Poverty*,Percentage of people under age 18 in poverty.,7.5%,Small Area Income and Poverty Estimates,2021,11%,17%
+,Income Inequality,Ratio of household income at the 80th percentile to income at the 20th percentile.,2.5%,"American Community Survey, 5-year estimates",2017-2021,3.7,4.9
+Family and Social Support,Children in Single-Parent Households,Percentage of children that live in a household headed by a single parent.,2.5%,"American Community Survey, 5-year estimates",2017-2021,13%,25%
+,Social Associations,"Number of membership associations per 10,000 population.",2.5%,County Business Patterns,2020,17.7,9.1
+Community Safety,Injury Deaths*,"Number of deaths due to injury per 100,000 population.",5.0%,National Center for Health Statistics - Mortality Files,2016-2020,61,76
+PHYSICAL ENVIRONMENT,,,,,,,
+Air and Water Quality,Air Pollution - Particulate Matter,Average daily density of fine particulate matter in micrograms per cubic meter (PM2.5).,2.5%,Environmental Public Health Tracking Network,2019,5,7.4
+,Drinking Water Violations+,"Indicator of the presence of health-related drinking water violations. 'Yes' indicates the presence of a violation, 'No' indicates no violation.",2.5%,Safe Drinking Water Information System,2021,,
+Housing and Transit,Severe Housing Problems,"Percentage of households with at least 1 of 4 housing problems: overcrowding, high housing costs, lack of kitchen facilities, or lack of plumbing facilities.",2%,Comprehensive Housing Affordability Strategy (CHAS) data,2015-2019,9%,17%
+,Driving Alone to Work*,Percentage of the workforce that drives alone to work.,2%,"American Community Survey, 5-year estimates",2017-2021,71%,73%
+,Long Commute - Driving Alone,"Among workers who commute in their car alone, the percentage that commute more than 30 minutes.",1%,"American Community Survey, 5-year estimates",2017-2021,17%,37%
+,,,,,,,
+*Indicates subgroup data by race and ethnicity is available; + Not available in all states.,,,,,,,

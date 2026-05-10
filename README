@@ -1,0 +1,138 @@
+# County-Level Public Health Analysis in R
+
+## Overview
+
+This project analyzes county-level public health data to explore how socioeconomic, behavioral, healthcare access, and environmental factors relate to life expectancy across U.S. counties.
+
+The analysis was completed using R and focuses on data cleaning, exploratory data analysis, visualization, correlation analysis, and regression modeling.
+
+---
+
+## Project Goals
+
+This project was designed to:
+
+- Practice real-world public health data analysis in R
+- Develop skills in data cleaning and transformation
+- Create professional data visualizations
+- Explore relationships between social determinants of health and life expectancy
+- Build a portfolio-ready data science project
+
+---
+
+## Research Questions
+
+- How does median household income relate to life expectancy?
+- How does education relate to life expectancy?
+- How are smoking, obesity, poverty, and healthcare access associated with life expectancy?
+- Which variables show the strongest correlations with life expectancy?
+
+---
+
+## Tools and Libraries
+
+- R
+- tidyverse
+- ggplot2
+- janitor
+- skimr
+- corrplot
+- R Markdown
+
+---
+
+## Data Source
+
+County Health Rankings & Roadmaps (2023)
+
+Data includes county-level measures related to:
+
+- Health outcomes
+- Health behaviors
+- Clinical care access
+- Socioeconomic conditions
+- Physical environment factors
+
+---
+
+## Methods
+
+### Data Cleaning
+
+- Removed missing county-level observations
+- Standardized column names
+- Converted character variables to numeric values
+- Combined datasets using county FIPS identifiers
+
+### Exploratory Data Analysis
+
+- Summary statistics
+- Missing value inspection
+- Distribution exploration
+
+### Data Visualization
+
+Created visualizations examining relationships between:
+
+- Income and life expectancy
+- Education and life expectancy
+- Smoking and life expectancy
+
+### Correlation Analysis
+
+Generated a correlation heatmap to evaluate relationships among key public health indicators.
+
+### Regression Modeling
+
+Built a multiple linear regression model predicting life expectancy using:
+
+- Median household income
+- Education
+- Smoking rates
+- Obesity rates
+- Uninsured rates
+- Child poverty rates
+
+---
+
+## Key Findings
+
+- Counties with higher income and education levels generally showed higher life expectancy.
+- Smoking, obesity, and poverty were associated with lower life expectancy.
+- Public health outcomes appear influenced by multiple interconnected socioeconomic and behavioral factors.
+
+---
+
+## Project Structure
+
+```text
+county-health-analysis-r/
+│
+├── README.md
+├── public_health_analysis.Rmd
+├── public_health_analysis.html
+├── scripts/
+├── data/
+├── figures/
+└── output/
+```
+
+---
+
+## Future Improvements
+
+Potential future improvements include:
+
+- Interactive dashboards using Shiny
+- Geographic mapping visualizations
+- Additional machine learning models
+- Time-series health trend analysis
+- Expanded feature engineering
+
+---
+
+## Author
+
+Alyssa Seal  
+Master’s Student in Data Science  
+Background in emergency services, EMS, and public safety analytics
